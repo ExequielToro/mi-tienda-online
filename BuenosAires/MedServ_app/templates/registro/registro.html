@@ -1,0 +1,59 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+  <head>
+  	<title>Registro de Usuario</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="{% static 'css/log2.css' %}">
+
+	</head>
+	<body class="img js-fullheight" style="background-image: url({% static 'img/fondoaires.jpg' %})">
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">Registro de Usuario</h2>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4">
+					<div class="login-wrap p-0">
+		      	<h3 class="mb-4 text-center">¿Tienes una Cuenta?</h3>
+		      	<form action="#" class="signin-form" method="post" >
+              {% csrf_token %}
+			  <div class="form-group">
+				{{ form}}
+			  </div>
+		      		
+	            <div class="form-group">
+	            	<button type="submit" class="form-control btn btn-primary submit px-3">Registrarse</button>
+	            </div>
+	            <div class="form-group d-md-flex">
+	            </div>
+	          </form>
+	          
+	          <div class="social d-flex text-center">
+	          	<a href="{% url 'Index' %}" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span> Volver al Inicio</a>&nbsp;
+				<a href="{% url 'login' %}" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span>Iniciar Sesion</a>
+	          	
+	          </div>
+		      </div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="{% static 'js/jquery.min.js'%}"></script>
+  <script src="{% static 'js/popper.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+
+	</body>
+</html>
+

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<!-- My CSS -->
+	<link rel="stylesheet" href="css/inventario.css">
+    
+
+	<title>MedServ</title>
+</head>
+<body>
+
+
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<img src="img/medserv.png" class="icon">
+			<span class="text"> MedServ</span>
+		</a>
+		<ul class="side-menu top">
+			<li class="">
+				<a href="inventario.html">
+					<i class='bx bxs-package' ></i>
+					<span class="text">Inventario</span>
+				</a>
+			</li>
+            <li class="">
+				<a href="inventario.html">
+					<i class='bx bxs-truck' ></i>
+					<span class="text">Seguimiento</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu top">
+			<li>
+				<a href="#">
+					<i class='bx bxs-cog' ></i>
+					<span class="text">Configuración</span>
+				</a>
+			</li>
+			<li>
+				<a href="{% url 'Inicio' %}" class="logout">
+					<i class='bx bxs-log-out-circle' ></i>
+					<span class="text">Inicio</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<form action="#">
+			</form>
+
+			<a href="#" class="profile">
+				<img src="img/perfil.svg">
+			</a>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Seguimiento</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Seguimiento</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="#">Inicio</a>
+						</li>
+					</ul>
+				</div>
+				<a href="#" class="btn-download">
+					<i class='bx bxs-cloud-download' ></i>
+					<span class="text">Guardar en PDF</span>
+				</a>
+			</div>
+
+			<div class="table-data">
+				<div class="order">
+					<div class="head">
+						<h3>Pedidos</h3>
+						<i class='bx bx-search' ></i>
+						<i class='bx bx-filter' ></i>
+					</div>
+					<table>
+						<thead>
+							<tr>
+								<th>Producto</th>
+								<th>Fecha</th>
+								<th>Estado</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<img src="img/monitor.png">
+									<p>Maquinaria</p>
+								</td>
+								<td>12/06/2023</td>
+								<td><span class="status completed">Entregado</span></td>
+							</tr>
+							<tr>
+								<td>
+									<img src="img/equipo.webp">
+									<p>Repuesto</p>
+								</td>
+								<td>17/06/2023</td>
+								<td><span class="status process">En camino</span></td>
+							</tr>
+							<tr>
+								<td>
+									<img src="img/mesa.jpg">
+									<p>Maquinaria</p>
+								</td>
+								<td>19/06/2023</td>
+								<td><span class="status pending">Creando</span></td>
+							</tr>
+							
+						</tbody>
+                        
+					</table>
+                    
+				</div>
+                
+				
+		</main>
+        
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+    
+	
+
+	<script src="js/script.js"></script>
+</body>
+
+</html>

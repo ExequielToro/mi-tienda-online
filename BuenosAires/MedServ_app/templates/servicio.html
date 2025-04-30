@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+
+{% load static %}
+<title>{% block title %}Mi Sitio Web{% endblock %}</title>
+
+{% block contenido %}
+
+<body>
+    
+    
+
+    <!-- Services Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Servicios</h5>
+                <h1 class="display-4">Nuestros servicios</h1>
+            </div>
+            <div class="row g-5">
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                        <div class="service-icon mb-4">
+                            <img src="{% static 'img/consulta.png' %}" class="icons">
+                        </div>
+                        <h4 class="mb-3">Asesorías</h4>
+                        <p class="m-0">Contamos con profesionales especializados que se encargan de guiar, aconsejar y encauzar sobre servicios.</p>
+                        <a class="btn btn-lg btn-primary rounded-pill" href="">
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                        <div class="service-icon mb-4">
+                            <img src="{% static 'img/medico.png' %}" class="icons">
+                        </div>
+                        <h4 class="mb-3">Dispositivos médicos</h4>
+                        <p class="m-0">Contamos con un amplio inventario de dispositivos médicos para ofrecer soluciones rápidas y efectivas.</p>
+                        <a class="btn btn-lg btn-primary rounded-pill" href="">
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                        <div class="service-icon mb-4">
+                            <img src="{% static 'img/myr.png' %}" class="icons">
+                        </div>
+                        <h4 class="mb-3">Mantenimientos y reparaciones </h4>
+                        <p class="m-0">Nuestra empresa está capacitada para ofrecer servicios de mantención y reparación de equipamiento médico.</p>
+                        <a class="btn btn-lg btn-primary rounded-pill" href="">
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Services End -->
+
+
+    <!-- Appointment Start -->
+    <div class="asesoria">
+        <div class="container py-5">
+            <div class="row gx-5">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="mb-4">
+                        <h5 class="d-inline-block text-white text-uppercase border-bottom border-5">Asesorías</h5>
+                        <h1 class="display-4" style="color:  white;">Asesorate con nosotros</h1>
+                    </div>
+                        <p class="text-white mb-5">
+                            Contamos con profesionales especializados que se encargan de guiar, aconsejar y encauzar nuestros pasos ante cualquier servicio. Nuestro objetivo principal es cumplir con todos los requerimientos de nuestros clientes, asesorándolos y entregándoles soluciones específicas para cada uno de sus casos.</p>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="bg-white text-center rounded p-5">
+                        <h1 class="mb-4">Pide tu asesoría</h1>
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-12 col-sm-6">
+                                    <input type="text" class="form-control bg-light border-0" placeholder="Tu nombre" style="height: 55px;">
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <input type="text" class="form-control bg-light border-0" placeholder="Tu correo" style="height: 55px;">
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="date" id="date" data-target-input="nearest">
+                                        <input type="text"
+                                            class="form-control bg-light border-0 datetimepicker-input"
+                                            placeholder="Fecha" data-target="#date" data-toggle="datetimepicker" style="height: 55px;">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="time" id="time" data-target-input="nearest">
+                                        <input type="text"
+                                            class="form-control bg-light border-0 datetimepicker-input"
+                                            placeholder="Horario" data-target="#time" data-toggle="datetimepicker" style="height: 55px;">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-outline-dark w-100 py-3" type="submit" style="color: #40adec;">Pedir asesoría</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Testimonial Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Acerca de</h5>
+                <h1 class="display-4">Servicios</h1>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="owl-carousel testimonial-carousel">
+                        <div class="testimonial-item text-center">
+                            <div class="position-relative mb-5">
+                                <img class="img-fluid rounded-circle mx-auto" src="img/img1.jpg" alt="">
+                                <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle" style="width: 60px; height: 60px;">
+                                    <i class="fa fa-quote-left fa-2x text-primary"></i>
+                                </div>
+                            </div>
+                            <p class="fs-4 fw-normal">Nuestra empresa está capacitada para ofrecer un
+                                servicios para la mantención de
+                                equipamiento médico, insumos y asesoría en
+                                nuevos proyectos clínicos asociados al área de
+                                diálisis, con apoyo en la implementación y puesta en
+                                marcha de estos.</p>
+                            <hr class="w-25 mx-auto">
+                            <h3></h3>
+                            <h6 class="fw-normal text-primary mb-3"></h6>
+                        </div>
+                        <div class="testimonial-item text-center">
+                            <div class="position-relative mb-5">
+                                <img class="img-fluid rounded-circle mx-auto" src="img/img2.webp" alt="">
+                                <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle" style="width: 60px; height: 60px;">
+                                    <i class="fa fa-quote-left fa-2x text-primary"></i>
+                                </div>
+                            </div>
+                            <p class="fs-4 fw-normal">Para ello nuestra empresa cuenta con personal
+                                calificado , de amplia experiencia y un
+                                staff estable de profesionales para asesorías y
+                                desarrollo de proyectos el cual estamos dispuestos
+                                a ajustar a las necesidades de cada cliente para
+                                cumplir con las tareas encomendadas, en la forma y
+                                plazos requeridos.</p>
+                            <hr class="w-25 mx-auto">
+                            <h3></h3>
+                            <h6 class="fw-normal text-primary mb-3"></h6>
+                        </div>
+                        <div class="testimonial-item text-center">
+                            <div class="position-relative mb-5">
+                                <img class="img-fluid rounded-circle mx-auto" src="img/img3.jpg" alt="">
+                                <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle" style="width: 60px; height: 60px;">
+                                    <i class="fa fa-quote-left fa-2x text-primary"></i>
+                                </div>
+                            </div>
+                            <p class="fs-4 fw-normal">Disponemos del servicio de
+                                personal administrativos, 
+                                técnicos electrónicos, 
+                                ingeniero eléctrico, 
+                                técnicos eléctricos y 
+                                maestros eléctricos</p>
+                            <hr class="w-25 mx-auto">
+                            <h3>e</h3>
+                            <h6 class="fw-normal text-primary mb-3"></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial End -->
+
+
+
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+</body>
+
+{% endblock %}

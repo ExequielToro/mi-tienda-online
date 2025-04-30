@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Subir imagen para el producto: {{ producto.p_nombre }}</title>
+</head>
+<body>
+    <h1>Subir imagen para el producto: {{ producto.p_nombre }}</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Subir imagen">
+    </form>
+</body>
+</html>

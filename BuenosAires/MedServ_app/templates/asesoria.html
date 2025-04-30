@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% load static %}
+<title>{% block title %}Mi Sitio Web{% endblock %}</title>
+
+{% block contenido %}
+
+    <div class="asesoria">
+        <div class="container py-5">
+            <div class="row gx-5">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="mb-4">
+                        <h5 class="d-inline-block text-white text-uppercase border-bottom border-5">Consultas</h5>
+                        <h1 class="display-4" style="color:  white;">Dudas con nosotros</h1>
+                    </div>
+                        <p class="text-white mb-5">
+                            Contamos con profesionales especializados que se encargan de guiar, aconsejar y encauzar nuestros pasos ante cualquier servicio. Nuestro objetivo principal es cumplir con todos los requerimientos de nuestros clientes, asesorándolos y entregándoles soluciones específicas para cada uno de sus casos.</p>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="bg-white text-center rounded p-5">
+                        <h1 class="mb-4">Pide tu consulta</h1>
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-12 col-sm-6">
+                                    <input type="text" class="form-control bg-light border-0" placeholder="Tu nombre" style="height: 55px;">
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <input type="text" class="form-control bg-light border-0" placeholder="Tu correo" style="height: 55px;">
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="date" id="date" data-target-input="nearest">
+                                        <input type="text"
+                                            class="form-control bg-light border-0 datetimepicker-input"
+                                            placeholder="Fecha" data-target="#date" data-toggle="datetimepicker" style="height: 55px;">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="time" id="time" data-target-input="nearest">
+                                        <input type="text"
+                                            class="form-control bg-light border-0 datetimepicker-input"
+                                            placeholder="Horario" data-target="#time" data-toggle="datetimepicker" style="height: 55px;">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-outline-dark w-100 py-3" type="submit" style="color: #40adec;">Pedir consulta</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+ {% endblock %}

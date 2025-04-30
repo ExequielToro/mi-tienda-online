@@ -1,0 +1,52 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+<title>{% block title %}Mi Sitio Web{% endblock %}</title>
+
+
+
+{% block contenido %}
+<body class="body_form">
+
+
+
+
+    <!-- Appointment Start -->
+                    <section class="form_wrap">
+
+                        <section class="cantact_info">
+                            <section class="info_title">
+                                <span class="fa fa-user-circle"></span>
+                                <h2>INFORMACION<br>DE CONTACTO</h2>
+                            </section>
+                            <section class="info_items">
+                                <p><img src="{% static 'img/gmail.png' %}" class="icon"> contactos@BuenosAires.cl</p>
+                                <p><img src="{% static 'img/llamada.png' %}" class="icon"> 2 1234 56789</p>
+                                <p ><img src="{% static 'img/ubicacion.png' %}" class="icon"> calle 123, Chile</p>
+                            </section>
+                        </section>
+                
+                        <form action="" class="form_contact" method="post">
+                            <h2>Contactanos</h2>
+                            <div class="user_info">
+                                {% csrf_token %}
+                                {{ form }}
+                
+                                <button type="submit" value="Enviar" class="btn btn-primary float-rigth" >Enviar</button>
+                            </div>
+                        </form>
+                
+                    </section>
+                
+
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+
+
+</body>
+{% endblock %}

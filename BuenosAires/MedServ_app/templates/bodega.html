@@ -1,0 +1,224 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+{% load humanize %}
+<title>{% block title %}Mi Sitio Web{% endblock %}</title>
+
+{% block js %}
+
+<script>
+    $(function() {
+      $("#form_buscar").on('submit', function() {
+        var formData = new FormData(this);
+        $.ajax({
+          url: "{% url 'post_buscar' %}",
+          type: "POST",
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function(respuesta) {
+            $("#nombre").val(respuesta.nombre);
+            $("#stock_disponible").val(respuesta.stock);
+            $("#precio").val(respuesta.precio);
+            $("#codigo_oculto").val(respuesta.codigo);
+            $("#btu").val(respuesta.btu);
+            $("#marca").val(respuesta.marca);
+          }
+        });
+        return false;
+      });
+  
+      $("#form_actualizar").on('submit', function(event) {
+          event.preventDefault(); // Prevenir el envío del formulario por defecto
+        
+          Swal.fire({
+            title: 'Confirmar actualización',
+            text: '¿Estás seguro de que deseas actualizar los datos?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              var formData = new FormData(this);
+              $.ajax({
+                url: "{% url 'post_actualizar' %}",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(respuesta) {
+                  var mensaje = respuesta.mensaje;
+                  if (mensaje) {
+                    Swal.fire({
+                      position: 'top-center',
+                      icon: 'success',
+                      title: 'Datos actualizados',
+                      showConfirmButton: false,
+                      timer: 1500
+                    });
+                  } else {
+                    Swal.fire({
+                      position: 'top-center',
+                      icon: 'error',
+                      title: 'Error al actualizar',
+                      showConfirmButton: false,
+                      timer: 1500
+                    });
+                  }
+                }
+              });
+            }
+          });
+        });
+        
+    });
+    
+  
+      $(function() {
+          $(".eliminar-producto").on('click', function(event) {
+              event.preventDefault();
+  
+              var botonEliminar = $(this);
+              var urlEliminar = botonEliminar.data('url');
+  
+              Swal.fire({
+                  title: 'Confirmar eliminación',
+                  text: '¿Estás seguro de que deseas eliminar este producto?',
+                  icon: 'question',
+                  showCancelButton: true,
+                  confirmButtonText: 'Sí',
+                  cancelButtonText: 'Cancelar'
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      $.ajax({
+                          url: urlEliminar,
+                          type: 'POST',
+                          data: {
+                              'csrfmiddlewaretoken': "{{ csrf_token }}"
+                          },
+                          success: function(respuesta) {
+                              var mensaje = respuesta.mensaje;
+                              if (mensaje) {
+                                  Swal.fire({
+                                      position: 'top-center',
+                                      icon: 'success',
+                                      title: mensaje,
+                                      showConfirmButton: false,
+                                      timer: 1500
+                                  }).then(() => {
+                                      location.reload(); // Recargar la página después de eliminar el producto
+                                  });
+                              } else {
+                                  Swal.fire({
+                                      position: 'top-center',
+                                      icon: 'error',
+                                      title: 'Error al eliminar el producto',
+                                      showConfirmButton: false,
+                                      timer: 1500
+                                  });
+                              }
+                          }
+                      });
+                  }
+              });
+          });
+      });
+      $(function() {
+          $("#form_ingresar").on('submit', function(event) {
+            event.preventDefault(); // Prevenir el envío del formulario por defecto
+      
+            var formData = new FormData(this);
+            $.ajax({
+              url: "{% url 'ingresar-producto' %}",
+              type: "POST",
+              data: formData,
+              processData: false,
+              contentType: false,
+              success: function(respuesta) {
+                var mensaje = respuesta.mensaje;
+                if (mensaje) {
+                  Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: mensaje,
+                    showConfirmButton: false,
+                    timer: 1500
+                  }).then(() => {
+                    location.reload(); // Recargar la página después de ingresar el producto
+                  });
+                } else {
+                  Swal.fire({
+                    position: 'top-center',
+                    icon: 'error',
+                    title: 'Error al ingresar el producto',
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                }
+              }
+            });
+          });
+        });
+</script>
+
+{% endblock %}
+
+{% block contenido %}
+
+<body >
+    
+
+
+    <!-- Productos-->
+    <center>
+    <h2 class="d-inline-block text-primary text-uppercase border-bottom border-5">Bodega</h2>
+    </center>
+    
+
+  <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Stock</th>
+            <th scope="col">BTU</th>
+            <th scope="col">Marca</th>
+            {% if user.is_authenticated and user.is_superuser or user.is_staff %}
+            <th scope="col">Acciones</th>
+            {% endif %}
+        </tr>
+    </thead> 
+    <tbody>
+        {% for producto in lista %}
+        <tr>
+            <th scope="row">{{producto.id_producto}}</th>
+            <td>{{producto.nombre|title}}</td>
+            <td>${{producto.marca|intcomma}}</td>
+            <td>{{producto.btu}}</td>
+            <td>{{producto.precio|title}}</td>
+            <td>{{producto.stock}}</td>
+            {% if user.is_authenticated and user.is_superuser or user.is_staff %}
+            <td>
+                <button class="btn btn-danger btn-sm eliminar-producto"
+                        data-url="{% url 'eliminar_producto' producto.id_producto %}">
+                    Eliminar
+                </button>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor%}
+    </tbody>
+</table>
+
+
+
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"
+><i class="bi bi-arrow-up"></i
+></a>
+</body>
+    <!-- Productos -->
+
+{% endblock %}

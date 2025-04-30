@@ -1,0 +1,15 @@
+myenv/         # Carpeta del entorno virtual, cámbiala si tu carpeta tiene otro nombre (por ejemplo, venv/)
+__pycache__/   # Carpeta que crea Python al ejecutar código (código compilado)
+*.pyc          # Archivos compilados de Python
+*.pyo          # Otros archivos compilados de Python
+*.pyd          # Archivos binarios en Windows
+
+*.sqlite3      # Bases de datos SQLite (si no quieres subirla al repo)
+db.sqlite3     # Específicamente este archivo si lo usas
+
+.DS_Store      # Archivo oculto de macOS (basura del sistema)
+.idea/         # Configuración de PyCharm o IntelliJ
+*.log          # Archivos de registro
+*.pot, *.mo    # Archivos de traducción que a veces no se versionan
+*.swp          # Archivos temporales de editores de texto como Vim
+.env           # Archivos de variables de entorno (nunca deben subirse)

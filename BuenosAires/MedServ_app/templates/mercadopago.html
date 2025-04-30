@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mercadopago </title>
+<body>
+    valor {{ preference_id}}
+   {% comment %} valor:  {{ preference_id}}
+   {{ mensaje}} {% endcomment %}
+    
+   <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+   <script>
+     const mp = new MercadoPago("TEST-064618b1-00e9-4406-9d09-e803fcfb7fa9");
+     const bricksBuilder = mp.bricks();
+ 
+     mp.bricks().create("wallet", "wallet_container", {
+       initialization: {
+         preferenceId: "{{ preference_id }}",
+         redirectMode: "modal",
+       },
+     });
+   </script>
+   <style>
+     .boton-mercado {
+       display: flex;
+       justify-content: center;
+       width: 30%;
+       margin: 0 auto;
+     }
+ 
+     .boton-mercado:hover {
+       background-color: #e0e0e0;
+     }
+   </style>
+ 
+   <div id="wallet_container" class="boton-mercado"></div>
+
+</body>
+</html>

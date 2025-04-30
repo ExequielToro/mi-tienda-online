@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load humanize%}
+<title>{% block title %}Mi Sitio Web{% endblock %}</title>
+
+{% block contenido %}
+ <!-- Navbar-->
+ <body>
+
+
+<!-- Productos-->
+
+<section class="contenedor">
+    <!-- Contenedor de elementos -->
+    <div class="container-flex">
+        <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+            <br><br>
+            <h2 class="d-inline-block text-primary text-uppercase border-bottom border-5">Aires Acondicionados</h2>
+        </div>
+        <div class="contenedor-items d-flex">
+        {% for x in lista %}
+        <div class="item">
+            <span class="titulo-item">{{ x.nombre }}</span>
+            <img src="{% static 'img/Aire_acondicionado.jpg' %}" alt="" class="img-item">
+            <span class="precio-item">$ {{ x.marca|intcomma  }}</span>
+            <button class="boton-item">Agregar al Carrito</button>
+        </div>
+        {% endfor %}
+           
+    
+        </div>
+    </div>
+    
+    <!-- Carrito de Compras -->
+    <div class="carrito" id="carrito">
+        <div class="header-carrito">
+            <h2>Tu Carrito</h2>
+        </div>
+
+        <div class="carrito-items">
+        
+        </div>
+        <div class="">
+            <div class="fila">
+                <strong>Tu Total</strong>
+                <span class="carrito-precio-total">
+                    $120.000.000
+                </span>
+            </div>
+           <div class="">
+        
+
+            <script src="https://sdk.mercadopago.com/js/v2"></script>
+         
+            <script>
+              const mp = new MercadoPago("TEST-064618b1-00e9-4406-9d09-e803fcfb7fa9");
+              const bricksBuilder = mp.bricks();
+          
+              mp.bricks().create("wallet", "wallet_container", {
+                initialization: {
+                  preferenceId: "{{ preference_id }}",
+                  redirectMode: "modal",
+                },
+              });
+            </script>
+            <style>
+              .boton-mercado {
+                display: flex;
+                justify-content: left;
+                width: 30%;
+                margin: 13%;
+              }
+          
+
+            </style>
+          
+            <div id="wallet_container" class="boton-mercado"></div>
+</div>
+        </div>
+    </div>
+</section>
+<script>
+    $(function() {
+        $("#form_buscar").on('submit', function() {
+            var formData = new FormData(this);
+            $.ajax({
+                url: "{% url 'post_buscar' %}",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(respuesta) {
+                    $("#nombre").val(respuesta.nombre);
+                    $("#stock_disponible").val(respuesta.stock);
+                    $("#precio").val(respuesta.precio);
+                    $("#codigo_oculto").val(respuesta.codigo);
+                    $("#btu").val(respuesta.btu);
+                    $("#marca").val(respuesta.marca);
+                }
+            });
+
+            return false;
+        });
+
+        $("#form_actualizar").on('submit', function() {
+            var formData = new FormData(this);
+            $.ajax({
+                url: "{% url 'post_actualizar' %}",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(respuesta) {
+                    var mensaje = respuesta.mensaje;
+                    if (mensaje)
+                        alert("Datos actualizados");
+                    else
+                        alert("Error al actualizar");
+                }
+            });
+
+            return false;
+        });
+    });
+</script>
+
+<!-- Productos -->
+    
+
+</body>
+
+{% endblock %}

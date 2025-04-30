@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% load static %}
+<title>{% block title %}Mi Sitio Web{% endblock %}</title>
+
+{% block js %}
+
+<script>
+  $(function() {
+      $("#form_ingresar").on('submit', function(event) {
+        event.preventDefault(); // Prevenir el envío del formulario por defecto
+  
+        var formData = new FormData(this);
+        $.ajax({
+          url: "{% url 'ingresar-producto' %}",
+          type: "POST",
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function(respuesta) {
+            var mensaje = respuesta.mensaje;
+            if (mensaje) {
+              Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: mensaje,
+                showConfirmButton: false,
+                timer: 1500
+              }).then(() => {
+                location.reload(); // Recargar la página después de ingresar el producto
+              });
+            } else {
+              Swal.fire({
+                position: 'top-center',
+                icon: 'error',
+                title: 'Error al ingresar el producto',
+                showConfirmButton: false,
+                timer: 1500
+              });
+            }
+          }
+        });
+      });
+    });
+
+</script>
+
+{% endblock %}
+
+
+{% block contenido %}
+
+<br><br>
+  <!-- Ingreesar -->
+
+  <center><h2 class="d-inline-block text-primary text-uppercase border-bottom border-5">Agregar Producto</h2></center>
+  <br>
+  <center>
+
+    <div class="container" >
+      <div class="row">
+          <div class="col-12 col-md-3 offset-md-3">
+              <div class="card" style="background-color: aqua;">
+                  <div class="card-body">
+                      <form method="post" enctype="multipart/form-data" id="form_ingresar">
+                          {% csrf_token %}
+                          <div class="form-group">
+                            <input type="hidden" name="ingresar_producto">
+                          </div>
+                          
+                          <div class="form-group">
+                            <label for="nombre_producto">Nombre:</label>
+                            <input type="text" name="nombre" id="nombre_producto">
+                          </div>
+                          <br>
+                          <div class="form-group">
+                            <label for="precio_producto">Precio:</label>
+                            <input type="text" name="precio" id="precio_producto"> 
+                          </div>
+                          <br>
+                          <div class="form-group">
+                            <label for="stock_producto">Stock:</label>
+                            <input type="text" name="stock" id="stock_producto"> 
+                          </div>
+                          <br>
+                          <div class="form-group">
+                            <label for="marca">Marca:</label>
+                            <input type="text" name="marca" id="marca">
+                          </div>
+                          <br>
+                          <div class="form-group">
+                            <label for="btu">BTU:</label>
+                            <input type="text" name="btu" id="btu">
+                          </div>
+                        
+                          <br>
+                          <button type="submit" class="btn btn-success">Agregar</button>
+                        </form>
+                        
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  </center>
+
+  
+
+  <!-- Ingreesar -->
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% load static %}
+<title>{% block title %}Mi Sitio Web{% endblock %}</title>
+
+{% block contenido %}
+  <!-- Navbar-->
+  <body>
+    
+
+    <!-- Nosotros -->
+    <div class="container-fluid py-5">
+      <div class="container">
+        <div class="row gx-5">
+          <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px">
+            <div class="position-relative h-100">
+              <img
+                class="position-absolute w-100 h-100 rounded"
+                src="{% static 'img/nosotros.jpg' %}"
+                style="object-fit: cover"
+              />
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="mb-4">
+              <h5
+                class="d-inline-block text-primary text-uppercase border-bottom border-5"
+              >
+                Sobre nosotros
+              </h5>
+              <h1 class="display-4">¿Qué es Buenos Aires?</h1>
+            </div>
+            <p>
+                Somos una empresa dedicada a la venta de aire acondicionados y repuestos
+            </p>
+            <div class="row g-3 pt-3">
+              <div class="col-sm-3 col-6">
+                <div class="bg-light text-center rounded-circle py-4">
+                  <img src="{% static 'img/tecnico.png' %}" class="icons" />
+                  <h6 class="mb-0">
+                    Técnicos<small class="d-block text-primary"
+                      >calificados</small
+                    >
+                  </h6>
+                </div>
+              </div>
+              <div class="col-sm-3 col-6">
+                <div class="bg-light text-center rounded-circle py-4">
+                  <img src="{% static 'img/asesor.png' %}" class="icons" />
+                  <h6 class="mb-0">
+                    Servicios<small class="d-block text-primary"
+                      >de asesoría</small
+                    >
+                  </h6>
+                </div>
+              </div>
+              <div class="col-sm-3 col-6">
+                <div class="bg-light text-center rounded-circle py-4">
+                  <img src="{% static 'img/calidad.png' %}" class="icons" />
+                  <h6 class="mb-0">
+                    Calidad<small class="d-block text-primary"
+                      >en productos</small
+                    >
+                  </h6>
+                </div>
+              </div>
+              <div class="col-sm-3 col-6">
+                <div class="bg-light text-center rounded-circle py-4">
+                  <img
+                    src="{% static 'img/mantenimiento.png' %}"
+                    class="icons"
+                  />
+                  <h6 class="mb-0">
+                    Servicios<small class="d-block text-primary"
+                      >Técnicos</small
+                    >
+                  </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"
+      ><i class="bi bi-arrow-up"></i
+    ></a>
+</body>
+{% endblock %}
