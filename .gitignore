@@ -13,3 +13,4 @@ db.sqlite3     # Específicamente este archivo si lo usas
 *.pot, *.mo    # Archivos de traducción que a veces no se versionan
 *.swp          # Archivos temporales de editores de texto como Vim
 .env           # Archivos de variables de entorno (nunca deben subirse)
+.DS_Store
