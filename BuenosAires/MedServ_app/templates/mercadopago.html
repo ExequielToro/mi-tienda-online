@@ -6,20 +6,25 @@
     valor {{ preference_id}}
    {% comment %} valor:  {{ preference_id}}
    {{ mensaje}} {% endcomment %}
-    
-   <script src="https://sdk.mercadopago.com/js/v2"></script>
+  
+<script>
+  const preferenceId = "{{ preference_id }}";
 
-   <script>
-     const mp = new MercadoPago("TEST-064618b1-00e9-4406-9d09-e803fcfb7fa9");
-     const bricksBuilder = mp.bricks();
- 
-     mp.bricks().create("wallet", "wallet_container", {
-       initialization: {
-         preferenceId: "{{ preference_id }}",
-         redirectMode: "modal",
-       },
-     });
-   </script>
+  if (preferenceId) {
+    const link = document.createElement("a");
+    link.href = "https://sandbox.mercadopago.cl/checkout/v1/redirect?pref_id=" + preferenceId;
+    link.innerText = "Pagar con Mercado Pago";
+    link.style.background = "#009ee3";
+    link.style.color = "white";
+    link.style.padding = "10px";
+    link.style.display = "inline-block";
+    link.style.textDecoration = "none";
+
+    document.getElementById("wallet_container").appendChild(link);
+  } else {
+    console.log("No hay preference_id");
+  }
+</script>
    <style>
      .boton-mercado {
        display: flex;

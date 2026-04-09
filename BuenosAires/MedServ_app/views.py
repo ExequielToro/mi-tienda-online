@@ -36,20 +36,28 @@ def Servicio(request):
     return render(request, 'servicio.html')
 
 def Equipos(request):
-    variable =  {
+    controller = Controller()
+    variable = {
         'mensaje': '',
         'lista': '',
+        'preference_id': ''
     }
-    controller = Controller()
-    print("hola")
+
     try:
-        lista = controller.buscarTodo
-        print(lista)
+        lista = controller.buscarTodo()
+        preference = controller.pagar()
+
+        print("RESPUESTA COMPLETA:", preference)  # 👈 DEBUG
+
         variable['lista'] = lista
+        variable['preference_id'] = preference.get('id', '')
         variable['mensaje'] = 'con datos'
-    except:
-        variable['mensaje'] = 'sin datos'
-    return render(request, 'equipos.html',variable)
+
+    except Exception as e:
+        print("ERROR:", e)  # 👈 DEBUG
+        variable['mensaje'] = f'Error: {e}'
+
+    return render(request, 'equipos.html', variable)
 
 def Perfil(request):
     return render(request, 'perfil.html')

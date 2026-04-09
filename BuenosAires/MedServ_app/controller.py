@@ -48,47 +48,32 @@ class Controller:
 
     
     def pagar(self):
-        #Agregar credenciales
-        #ojo son las del vendedor de prueba no las credenciales mias como cliente
-        #vendedor
-        #{"id":773889678,"nickname":"TETE5286432","password":"qatest6632","site_status":"active","email":"test_user_14786185@testuser.com"}
-
-        #comprador
-        #{"id":773889678,"nickname":"TEST9GVLSYZE","password":"qatest6632","site_status":"active","email":"test_user_42921861@testuser.com"}
-
-        #se debe ingresar con estas credenciales a la pagina y obtener un token como vendedor
-        # https://www.mercado.cl/developers/es/guides
-        #TEST-4113249211775140-060816-f22ac383ad0dc6dcdcec1fe81b61745b-773889678")
-
-
         sdk = mercadopago.SDK("TEST-20740088581424-061118-25aa2389f89bd2e80efcb1931e8ece4f-1396964436")
 
-        # Crea un ítem en la preferencia
         preference_data = {
             "items": [
                 {
                     "title": "Aire Acondicionado Nike",
-                    "id":1,
+                    "id": 1,
                     "description": "Producto",
                     "quantity": 1,
                     "unit_price": 100000
-                },
-                {
-                    "title": "Aire Acondicionado Wifi",
-                    "id":2,
-                    "description": "Producto",
-                    "quantity": 1,
-                    "unit_price": 150000
                 }
             ],
-            "back_urls":{
+            "back_urls": {
                 "success": "http://127.0.0.1:8000/",
                 "failure": "http://127.0.0.1:8000/",
                 "pending": "http://127.0.0.1:8000/"
             },
-            "auto_return": "approved"
+            
         }
 
         preference_response = sdk.preference().create(preference_data)
-        #preference = preference_response["response"]
-        return preference_response
+
+        print("MP RAW:", preference_response)  # 👈 DEBUG REAL
+
+        # 👇 cubrir ambos casos (SDK viejo y nuevo)
+        if "response" in preference_response:
+            return preference_response["response"]
+        else:
+            return preference_response
